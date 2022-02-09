@@ -1,3 +1,6 @@
+/**
+ *Submitted for verification at BscScan.com on 2022-01-04
+*/
 
 // File: @openzeppelin/contracts/utils/Context.sol
 
@@ -711,11 +714,11 @@ abstract contract BEP20Burnable is Context, BEP20 {
 
 
 
-contract BFGT is BEP20, BEP20Burnable, Pausable, Ownable {
-    // mapping(address => bool) public lockedOf;
+contract BGOF is BEP20, BEP20Burnable, Pausable, Ownable {
+
     mapping(address => uint256) public lockedOfamount;
      uint public _totalSupply;
-    constructor() BEP20("Bingo Family Token", "BFGT") {
+    constructor() BEP20("BINGO FAMILY TOKEN", "BGOF") {
         _totalSupply = 1000 * 10**6 *10**18;
         _mint(msg.sender, _totalSupply);
     }
@@ -743,7 +746,6 @@ contract BFGT is BEP20, BEP20Burnable, Pausable, Ownable {
 
   function isUnLockedOf(address account, uint256 amount) public view returns (bool) {
     uint256 availableBalance = balanceOf(account) - lockedOfamount[account];
-    // return senderBalance;
     require( availableBalance >= amount, "This account locked");
      return true;
   }
@@ -752,13 +754,11 @@ contract BFGT is BEP20, BEP20Burnable, Pausable, Ownable {
 
   function lockAddress(address account, uint256 amount) public onlyOwner returns (bool) {
     lockedOfamount[account] = amount;
-    // lockedOf[account] = true;
     return true;
   }
 
  
   function unlockAddress(address account) public onlyOwner returns (bool) {
-    // lockedOf[account] = false;
     lockedOfamount[account] = 0;
     return true;
   }
@@ -782,4 +782,8 @@ contract BFGT is BEP20, BEP20Burnable, Pausable, Ownable {
         return super.transferFrom(sender, recipient, amount);
   } 
   
+  function mint(address to, uint256 amount) public onlyOwner {
+            _mint(to, amount);
+    }
+    
 }
